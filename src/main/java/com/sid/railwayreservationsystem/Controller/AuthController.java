@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.reflect.MalformedParameterizedTypeException;
+import java.util.Map;
+
 @RestController
 @RequestMapping("api/v1/auth")
 public class AuthController {
@@ -19,7 +22,7 @@ public class AuthController {
     AuthServices authServices;
 
     @GetMapping("/signUp")
-    public String signUpUser(User user)
+    public String signUpUser(Map<String,String> user)
     {
         return authServices.signUpUser(user);
     }
