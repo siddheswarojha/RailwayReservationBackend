@@ -3,8 +3,7 @@ package com.sid.railwayreservationsystem.Response;
 import com.sid.railwayreservationsystem.Entity.User;
 import lombok.Getter;
 import lombok.Setter;
-import org.bson.types.ObjectId;
-import org.springframework.data.annotation.Id;
+
 
 @Getter
 @Setter

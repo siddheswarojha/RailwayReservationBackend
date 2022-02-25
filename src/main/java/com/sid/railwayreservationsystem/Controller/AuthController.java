@@ -7,6 +7,7 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServer;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class AuthController {
     @Autowired
     AuthServices authServices;
 
-    @GetMapping("/signUp")
+    @PostMapping("/signUp")
     public String signUpUser(Map<String,String> user)
     {
         return authServices.signUpUser(user);
