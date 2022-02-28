@@ -26,5 +26,14 @@ public class AuthController {
     }
 
 
+    @PostMapping("/login")
+    public String loginUser(@RequestParam Map<String,String> user){
+        return authServices.loginUser(user);
+    }
+
+
+    
+
+
 
 }

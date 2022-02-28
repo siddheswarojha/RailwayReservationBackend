@@ -28,26 +28,19 @@ public class AuthServices {
 
         else if(user.get("email")==null || user.get("name")==null|| user.get("password")==null)
         {
-            System.out.println(user.get("email"));
-            System.out.println(user.get("name"));
-            System.out.println(user.get("password"));
+//            System.out.println(user.get("email"));
+//            System.out.println(user.get("name"));
+//            System.out.println(user.get("password"));
             return "Bad Body Found";
         }
         else
         {
 
             String key =UUID.randomUUID().toString();
-//            Optional<User> apiKey = userRepository.findUserByApiKey(key);
-//
-//            if(apiKey.isPresent())
-//            {
-//
-//            }
-
             User userObj = new User();
 
             userObj.setApiKey(key);
-            userObj.setEmail(user.get("emailAddress"));
+            userObj.setEmail(user.get("email"));
             userObj.setName(user.get("name"));
             userObj.setPassword(user.get("password"));
             userObj.setAge(user.get("age"));
@@ -56,6 +49,23 @@ public class AuthServices {
 
             authenticationRepository.save(userObj);
             return "Registered";
+        }
+
+    }
+
+    public String loginUser(Map<String, String> user) {
+
+        User user1 = authenticationRepository.findUserByEmail(user.get("email"))
+                .orElseThrow(() -> new IllegalStateException("User Not Found!"));
+
+
+        if (user.get("password").equals(user1.getPassword()))
+        {
+            return user1.getApiKey();
+        }
+        else
+        {
+            return "Wrong Password";
         }
 
     }
